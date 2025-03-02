@@ -1,13 +1,36 @@
-﻿using Core.Interfaces;
+﻿using Core.DB;
+using Core.Interfaces;
 using Core.Models;
+using Core.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Runtime.Intrinsics.X86;
 
 namespace Core.BusinessLogic
 {
     public class UsersService : IUsersService
     {
-        public int CreateUser(NewUser user)
+        ApplicationContext _context;
+
+        private IUsersRepository _usersRepository;
+        public UsersService(ApplicationContext context)
         {
-            var id = 1;
+            _context = context;
+            _usersRepository = new UsersRepository(_context);
+        }
+
+        public async Task<int> CreateUserAsync(NewUser user)
+        {
+            var newUser = new User()
+            {
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                BirthDate = user.BirthDate,
+                Password = user.Password,
+                Email = user.Email,
+                PhoneNumber = user.PhoneNumber
+            };
+
+            var id = await _usersRepository.CreateUserAsync(newUser);
             return id;
         }
 

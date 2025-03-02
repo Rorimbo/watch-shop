@@ -3,16 +3,16 @@
 namespace Core.Interfaces
 {
     /// <summary>
-    /// Сервис, отвечающий за авторизованные пользовательские действия.
+    /// Репозиторий, отвечающий за авторизованные пользовательские действия.
     /// </summary>
-    public interface IUsersService
+    public interface IUsersRepository
     {
         /// <summary>
         /// Создание пользователя.
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public Task<int> CreateUserAsync(NewUser user);
+        public Task<int> CreateUserAsync(User user);
 
         /// <summary>
         /// Авторизация.

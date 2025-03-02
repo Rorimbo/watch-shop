@@ -1,7 +1,10 @@
 using Core.BusinessLogic;
+using Core.DB;
 using Core.Interfaces;
 using Core.Models;
+using Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers;
 
@@ -9,19 +12,22 @@ namespace WebApi.Controllers;
 [Route("[controller]")]
 public class UsersController : ControllerBase
 {
+    ApplicationContext _context;
     private readonly ILogger<UsersController> _logger;
-    private IUsersService _usersService = new UsersService();
+    private IUsersService _usersService;
 
-    public UsersController(ILogger<UsersController> logger)
+    public UsersController(ILogger<UsersController> logger, ApplicationContext context)
     {
-        _logger = logger;
+        _logger = logger; 
+        _context = context;
+        _usersService = new UsersService(_context);
     }
 
     [HttpPost]
     [Route("create")]
-    public int CreateUser(NewUser user)
+    public async Task<int> CreateUserAsync(NewUser user)
     {
-        var id = _usersService.CreateUser(user);
+        var id = await _usersService.CreateUserAsync(user);
         return id;
     }
 

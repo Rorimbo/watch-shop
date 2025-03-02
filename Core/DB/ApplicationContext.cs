@@ -3,14 +3,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Core.DB
 {
-    class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext
     {
         public DbSet<User> Users => Set<User>();
         public ApplicationContext() => Database.EnsureCreated();
+
+        public ApplicationContext(DbContextOptions<ApplicationContext> options)
+                : base(options)
+        {
+            Database.EnsureCreated();
+        }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Data Source=helloapp.db");
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>().ToTable("Users");
+        }
+
     }
 }
