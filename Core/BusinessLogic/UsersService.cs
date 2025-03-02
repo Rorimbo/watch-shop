@@ -2,8 +2,6 @@
 using Core.Interfaces;
 using Core.Models;
 using Core.Repositories;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.Intrinsics.X86;
 
 namespace Core.BusinessLogic
 {
@@ -33,23 +31,21 @@ namespace Core.BusinessLogic
             var id = await _usersRepository.CreateUserAsync(newUser);
             return id;
         }
-
-        public User GetUserInfo(int id)
+        public async Task<int> LogInAsync(string email, string password)
         {
-            var user = new User();
-            return user;
-        }
-
-        public int LogIn(string email, string password)
-        {
-            var id = 1;
+            var id = await _usersRepository.LogInAsync(email, password);
             return id;
         }
 
-        public void UpdateUserInfo(User user)
+        public async Task<User> GetUserInfoAsync(int id)
         {
-            Console.WriteLine(user);
-            return;
+            var user = await _usersRepository.GetUserInfoAsync(id);
+            return user;
+        }
+
+        public async Task UpdateUserInfoAsync(User user)
+        {
+            await _usersRepository.UpdateUserInfoAsync(user);
         }
     }
 }

@@ -33,25 +33,24 @@ public class UsersController : ControllerBase
 
     [HttpGet]
     [Route("login")]
-    public int LogIn(string email, string password)
+    public async Task<int> LogInAsync(string email, string password)
     {
-        var id = _usersService.LogIn(email, password);
+        var id = await _usersService.LogInAsync(email, password);
         return id;
     }
 
     [HttpGet]
     [Route("info/{id}")]
-    public User GetUserInfo(int id)
+    public async Task<User> GetUserInfoAsync(int id)
     {
-        var user = _usersService.GetUserInfo(id);
+        var user = await _usersService.GetUserInfoAsync(id);
         return user;
     }
 
     [HttpPut]
     [Route("info")]
-    public void UpdateUserInfo(User user)
+    public async Task UpdateUserInfoAsync(User user)
     {
-        _usersService.UpdateUserInfo(user);
-        return;
+        await _usersService.UpdateUserInfoAsync(user);
     }
 }

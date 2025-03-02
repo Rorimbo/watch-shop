@@ -22,22 +22,28 @@ namespace Core.Repositories
         {
             await _context.Users.AddAsync(user);
             await _context.SaveChangesAsync();
+            var id = user.Id;
+            return id;
+        }
+        public async Task<int> LogInAsync(string email, string password)
+        {
+            var user = await _context.Users
+                .Where(user => user.Email == email && user.Password == password)
+                .SingleAsync();
             return user.Id;
         }
 
-        public User GetUserInfo(int id)
+        public async Task<User> GetUserInfoAsync(int id)
         {
-            throw new NotImplementedException();
+            var user = await _context.Users.FindAsync(id);
+            return user;
         }
 
-        public int LogIn(string email, string password)
+        public async Task UpdateUserInfoAsync(User user)
         {
-            throw new NotImplementedException();
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateUserInfo(User user)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

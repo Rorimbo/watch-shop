@@ -20,19 +20,19 @@ namespace Core.Interfaces
         /// <param name="email"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public int LogIn(string email, string password);
+        public Task<int> LogInAsync(string email, string password);
 
         /// <summary>
         /// Получение информации о пользователе.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public User GetUserInfo(int id);
+        public Task<User> GetUserInfoAsync(int id);
 
         /// <summary>
         /// Обновление информации о пользователе.
         /// </summary>
         /// <param name="user"></param>
-        public void UpdateUserInfo(User user);
+        public Task UpdateUserInfoAsync(User user);
     }
 }
