@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
-import { BrandsComponent } from './brands/brands.component';
+// import { BrandsComponent } from './brands/brands.component';
 import { NewsComponent } from './news/news.component';
 import { AboutComponent } from './about/about.component';
 import { ModelComponent } from './model/model.component';
@@ -29,7 +29,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    BrandsComponent,
+    // BrandsComponent,
     NewsComponent,
     AboutComponent,
     ModelComponent,
