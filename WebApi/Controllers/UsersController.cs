@@ -1,3 +1,5 @@
+using Core.BusinessLogic;
+using Core.Interfaces;
 using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +10,7 @@ namespace WebApi.Controllers;
 public class UsersController : ControllerBase
 {
     private readonly ILogger<UsersController> _logger;
+    private IUsersService _usersService = new UsersService();
 
     public UsersController(ILogger<UsersController> logger)
     {
@@ -18,7 +21,7 @@ public class UsersController : ControllerBase
     [Route("create")]
     public int CreateUser(NewUser user)
     {
-        var id = 1;
+        var id = _usersService.CreateUser(user);
         return id;
     }
 
@@ -26,7 +29,7 @@ public class UsersController : ControllerBase
     [Route("login")]
     public int LogIn(string email, string password)
     {
-        var id = 1;
+        var id = _usersService.LogIn(email, password);
         return id;
     }
 
@@ -34,7 +37,7 @@ public class UsersController : ControllerBase
     [Route("info/{id}")]
     public User GetUserInfo(int id)
     {
-        var user = new User();
+        var user = _usersService.GetUserInfo(id);
         return user;
     }
 
@@ -42,5 +45,7 @@ public class UsersController : ControllerBase
     [Route("info")]
     public void UpdateUserInfo(User user)
     {
+        _usersService.UpdateUserInfo(user);
+        return;
     }
 }

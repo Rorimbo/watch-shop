@@ -1,12 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Core.Interfaces;
+using Core.Models;
 
 namespace Core.BusinessLogic
 {
-    class UsersService
+    public class UsersService : IUsersService
     {
+        public int CreateUser(NewUser user)
+        {
+            var id = 1;
+            return id;
+        }
+
+        public User GetUserInfo(int id)
+        {
+            var user = new User();
+            return user;
+        }
+
+        public int LogIn(string email, string password)
+        {
+            var id = 1;
+            return id;
+        }
+
+        public void UpdateUserInfo(User user)
+        {
+            Console.WriteLine(user);
+            return;
+        }
     }
 }
