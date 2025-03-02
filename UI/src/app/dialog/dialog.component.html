@@ -1,0 +1,10 @@
+<div class="dialog">
+  <h1 mat-dialog-title>{{ params.dialogText }}</h1>
+
+  <div mat-dialog-actions>
+    <button mat-dialog-close (click)="goToOrder()" class="btn">
+      {{ "Оформить заказ" | uppercase }}
+    </button>
+    <button mat-button mat-dialog-close>Продолжить покупки</button>
+  </div>
+</div>

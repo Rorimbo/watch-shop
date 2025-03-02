@@ -1,0 +1,40 @@
+<div class="cart">
+<h3 class="title">{{ "корзина" | uppercase }}</h3>
+
+<div  *ngIf="cartItems && cartItems.length; else empty">
+  <div class="products">
+    <ul class="cart-list">
+      <li class="cart-item" *ngFor="let item of cartItems">
+        <div class="product">
+          <div class="column product-column">
+            <img class="product-photo" [src]="item.previewUrl" alt="photo" />
+            <div>
+              <p>{{ item.name }}</p>
+            </div>
+          </div>
+          <div class="column count-column">Количество: {{ item.amount }}</div>
+          <div class="column price-column">Итого: {{ item.totalPrice }} ₽</div>
+        </div>
+        <div class="delete-icon">
+          <img
+            src="../../assets/cross.svg"
+            alt="delete item"
+            class="delete-btn"
+            (click)="delete(item)"
+          />
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="btn-text">
+    <p class="text">Товаров на сумму: {{ this.total }} ₽</p>
+  </div>
+</div>
+
+<ng-template #empty>
+  <div class="empty">{{ "ваша корзина пуста" | uppercase }}</div>
+</ng-template>
+</div>
+
+<app-order></app-order>

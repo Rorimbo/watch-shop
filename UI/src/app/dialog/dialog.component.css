@@ -1,0 +1,38 @@
+.dialog {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 25vh;
+}
+
+.mat-mdc-dialog-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 0;
+}
+
+.close {
+  background-color: #cccccc;
+  color: #333333;
+  bottom: none;
+  padding: 1em;
+}
+
+@media screen and (max-width: 767px) {
+  .dialog {
+    width: 300px;
+    height: 15vh;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 989px) {
+  .dialog {
+    width: 300px;
+    height: 15vh;
+  }
+}

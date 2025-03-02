@@ -1,0 +1,262 @@
+<div class="order">
+  <h3 class="title">{{ "оформление заказа" | uppercase }}</h3>
+  <form [formGroup]="orderForm" (ngSubmit)="submitForm()">
+    <div>
+      <h2 class="subtitle">Контактные данные</h2>
+      <div class="information">
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Имя</mat-label>
+            <input matInput class="input" formControlName="name" />
+
+            <mat-error *ngIf="orderForm.controls['name'].hasError('required')">
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Телефон</mat-label>
+            <span matPrefix> +7 &nbsp;</span>
+            <input type="tel" matInput class="input" formControlName="phone" />
+          </mat-form-field>
+
+          <mat-error
+            *ngIf="
+              !orderForm.controls['phone'].hasError('required') &&
+              orderForm.controls['phone'].hasError('pattern') &&
+              orderForm.controls['phone'].touched
+            "
+          >
+            Некорректный номер
+          </mat-error>
+
+          <mat-error
+            *ngIf="
+              orderForm.controls['phone'].hasError('required') &&
+              orderForm.controls['phone'].touched
+            "
+          >
+            Обязательное поле
+          </mat-error>
+        </div>
+
+        <div class="order-field">
+          <mat-form-field class="order-field" appearance="fill">
+            <mat-label class="mat-label">E-mail</mat-label>
+            <input
+              type="email"
+              matInput
+              class="input"
+              formControlName="email"
+            />
+
+            <mat-error
+              *ngIf="
+                orderForm.controls['email'].hasError('email') &&
+                !orderForm.controls['email'].hasError('required') &&
+                orderForm.controls['email'].touched
+              "
+            >
+              Пожалуйста, введите корректный E-mail
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                orderForm.controls['email'].hasError('required') &&
+                orderForm.controls['email'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="subtitle">Способ доставки</h2>
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="delivery"
+        [labelPosition]="'before'"
+        class="information"
+      >
+        <div class="radio-row">
+          <mat-radio-button
+            class="radiobutton"
+            value="Самовывоз"
+            (click)="selectPichup()"
+          >
+            Забрать в магазине
+          </mat-radio-button>
+        </div>
+
+        <div class="radio-row">
+          <mat-radio-button
+            class="radiobutton"
+            value="Курьер"
+            (click)="selectDelivery()"
+          >
+            Доставка курьером
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+    </div>
+
+    <div>
+      <h2 class="subtitle">Доставка</h2>
+      <div class="information">
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Страна</mat-label>
+            <input matInput class="input" formControlName="country" />
+            <mat-error
+              *ngIf="orderForm.controls['country'].hasError('required')"
+            >
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Город</mat-label>
+            <input matInput class="input" formControlName="city" />
+            <mat-error *ngIf="orderForm.controls['city'].hasError('required')">
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="isSelectPickup" class="information">
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Адрес</mat-label>
+            <input matInput class="input" formControlName="address" />
+            <mat-error
+              *ngIf="orderForm.controls['address'].hasError('required')"
+            >
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div *ngIf="isSelectDelivery" class="information">
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Адрес</mat-label>
+            <input matInput class="input" formControlName="address" />
+            <mat-error
+              *ngIf="orderForm.controls['address'].hasError('required')"
+            >
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Индекс</mat-label>
+            <input matInput class="input" formControlName="index" />
+
+            <mat-error
+              *ngIf="
+                !orderForm.controls['index'].hasError('required') &&
+                orderForm.controls['index'].hasError('pattern') &&
+                orderForm.controls['index'].touched
+              "
+            >
+              Некорректный индекс
+            </mat-error>
+
+            <mat-error
+              *ngIf="
+                orderForm.controls['index'].hasError('required') &&
+                orderForm.controls['index'].touched
+              "
+            >
+              Обязательное поле
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="order-field">
+          <mat-form-field class="order-field-form">
+            <mat-label class="mat-label">Комментарий</mat-label>
+            <input matInput class="input" #message maxlength="256" />
+            <mat-hint align="start"> </mat-hint>
+            <mat-hint align="end">{{ message.value.length }} / 256</mat-hint>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h2 class="subtitle">Способ оплаты</h2>
+      <mat-radio-group
+        aria-label="Select an option"
+        formControlName="pay"
+        [labelPosition]="'before'"
+        class="information"
+      >
+        <div class="radio-row">
+          <mat-radio-button class="radiobutton" value="Наличные">
+            Наличные
+          </mat-radio-button>
+        </div>
+
+        <div class="radio-row">
+          <mat-radio-button class="radiobutton" value="Оплата на сайте">
+            Картой на сайте
+          </mat-radio-button>
+        </div>
+
+        <div class="radio-row">
+          <mat-radio-button class="radiobutton" value="Оплата при получении">
+            Картой при получении
+          </mat-radio-button>
+        </div>
+      </mat-radio-group>
+    </div>
+
+    <div class="checkbox">
+      <div>
+        <mat-checkbox
+          formControlName="agreement"
+          class="agreement"
+          value="Согласие"
+        >
+          <a (click)="agreementDialog()"
+            >Согласие на обработку персональных данных</a
+          ></mat-checkbox
+        >
+        <mat-error
+          *ngIf="
+            orderForm.controls['agreement'].hasError('required') &&
+            orderForm.controls['agreement'].touched
+          "
+        >
+          Обязательное поле
+        </mat-error>
+      </div>
+      <div>
+        <mat-checkbox
+          formControlName="notification"
+          class="notification"
+          value="Оповещение"
+          >Оповещение об уведомлениях</mat-checkbox
+        >
+      </div>
+    </div>
+
+    <div class="btn-styles">
+      <button type="submit" [disabled]="orderForm.invalid" class="btn">
+        {{ "оформить заказ" | uppercase }}
+      </button>
+    </div>
+  </form>
+</div>

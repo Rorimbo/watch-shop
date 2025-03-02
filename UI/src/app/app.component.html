@@ -1,0 +1,7 @@
+<app-header [total]="total"></app-header>
+<div class="content">
+  <router-outlet
+    (activate)="giveCart($event)"
+    (deactivate)="getCart($event)"
+  ></router-outlet>
+</div>
