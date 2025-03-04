@@ -1,14 +1,10 @@
 ﻿namespace Core.Models
 {
-    public class ProductWithBrand
+    public class ProductWithBrand : Product
     {
-        public int Id { get; set; }
-        public int BrandId { get; set; }
-        public string? Title { get; set; }
-        public int Price { get; set; }
-        public string? ImageUrls { get; set; }
-
-        public string? NameBrand { get; set; }
-        public string? NameModel { get; set; }
+        public int? Id { get; set; }
+        public int? BrandId { get; set; }
+        public string? BrandName { get; set; }
+        public string? BrandCountry { get; set; }
     }
 }

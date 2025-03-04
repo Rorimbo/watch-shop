@@ -2,9 +2,7 @@ using Core.BusinessLogic;
 using Core.DB;
 using Core.Interfaces;
 using Core.Models;
-using Core.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace WebApi.Controllers;
 
@@ -18,7 +16,7 @@ public class UsersController : ControllerBase
 
     public UsersController(ILogger<UsersController> logger, ApplicationContext context)
     {
-        _logger = logger; 
+        _logger = logger;
         _context = context;
         _usersService = new UsersService(_context);
     }

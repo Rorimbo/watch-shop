@@ -1,5 +1,4 @@
-﻿
-using Core.DB;
+﻿using Core.DB;
 using Core.Interfaces;
 using Core.Models;
 using Microsoft.EntityFrameworkCore;
