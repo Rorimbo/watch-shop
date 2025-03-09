@@ -3,7 +3,7 @@
 namespace Core.Interfaces
 {
     /// <summary>
-    /// Сервис товаров.
+    /// Репозиторий товаров.
     /// </summary>
     public interface IProductsRepository
     {

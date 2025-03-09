@@ -1,5 +1,6 @@
 ﻿using Core.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Web.Helpers;
 
 namespace Core.DB
 {
@@ -8,6 +9,7 @@ namespace Core.DB
         public DbSet<User> Users => Set<User>();
         public DbSet<Product> Products => Set<Product>();
         public DbSet<Brand> Brands => Set<Brand>();
+        public DbSet<Cart> Carts => Set<Cart>();
         public ApplicationContext() => Database.EnsureCreated();
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -25,6 +27,7 @@ namespace Core.DB
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<Product>().ToTable("Products");
             modelBuilder.Entity<Brand>().ToTable("Brands");
+            modelBuilder.Entity<Cart>().ToTable("Carts");
 
         }
 

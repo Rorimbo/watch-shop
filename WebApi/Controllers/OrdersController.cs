@@ -1,83 +1,39 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Core.BusinessLogic;
+using Core.DB;
+using Core.Interfaces;
+using Core.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
-    public class OrdersController : Controller
+    [ApiController]
+    [Route("[controller]")]
+    public class OrdersController : ControllerBase
     {
-        // GET: OrdersController
-        public ActionResult Index()
+        ApplicationContext _context;
+        private readonly ILogger<OrdersController> _logger;
+        private IOrdersService _ordersService;
+
+        public OrdersController(ILogger<OrdersController> logger, ApplicationContext context)
         {
-            return View();
+            _logger = logger;
+            _context = context;
+            _ordersService = new OrdersService(_context);
         }
 
-        // GET: OrdersController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        // GET: OrdersController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: OrdersController/Create
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [Route("cart")]
+        public async Task AddCartAsync(Cart cart)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _ordersService.AddCartAsync(cart);
         }
 
-        // GET: OrdersController/Edit/5
-        public ActionResult Edit(int id)
+        [HttpGet]
+        [Route("cart/{userId}")]
+        public async Task<List<CartForView>> GetCartAsync(int userId)
         {
-            return View();
-        }
-
-        // POST: OrdersController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: OrdersController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: OrdersController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var cartItems = await _ordersService.GetCartAsync(userId);
+            return cartItems;
         }
     }
 }
