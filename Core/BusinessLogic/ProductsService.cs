@@ -53,5 +53,11 @@ namespace Core.BusinessLogic
 
             await _productsRepository.CreateProductAsync(newProduct);
         }
+
+        public async Task<List<ProductWithBrand>> SearchByBrand(string name)
+        {
+            var brandName = await _productsRepository.SearchByBrand(name);
+            return brandName;
+        }
     }
 }

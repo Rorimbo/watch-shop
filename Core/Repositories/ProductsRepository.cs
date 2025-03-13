@@ -73,5 +73,20 @@ namespace Core.Repositories
             await _context.SaveChangesAsync();
             return brand.Id;
         }
+
+        public async Task<List<ProductWithBrand>> SearchByBrand(string name)
+        {
+            var brandName = await _context.Products.Join(_context.Brands, p => p.BrandId, b => b.Id, (p, b) => new ProductWithBrand()
+            {
+                Id = p.Id,
+                BrandId = p.BrandId,
+                Model = p.Model,
+                BrandName = b.Name,
+                BrandCountry = b.Country,
+            })
+                .Where(b => b.BrandName.ToLower().Contains(name.ToLower()))
+                .ToListAsync();
+            return brandName;
+        }
     }
 }

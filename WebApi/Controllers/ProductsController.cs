@@ -42,5 +42,13 @@ namespace WebApi.Controllers
         {
             await _productsService.CreateProductAsync(product);
         }
+
+        [HttpGet]
+        [Route("search")]
+        public async Task<List<ProductWithBrand>> SearchByBrand(string name)
+        {
+            var brandName = await _productsService.SearchByBrand(name);
+            return brandName;
+        }
     }
 }

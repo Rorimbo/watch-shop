@@ -33,12 +33,19 @@ namespace Core.Interfaces
         /// <param name="name"></param>
         /// <returns></returns>
         public Task<int?> FindBrandByName(string name);
+
         /// <summary>
         /// Создание нового бренда.
         /// </summary>
         /// <param name="brand"></param>
         /// <returns></returns>
         public Task<int> CreateNewBrand(Brand brand);
+
+        /// <summary>
+        /// Поиск товара по имени бренда.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<ProductWithBrand>> SearchByBrand(string name);
 
     }
 }

@@ -27,5 +27,11 @@ namespace Core.Interfaces
         /// <returns></returns>
         public Task CreateProductAsync(ProductWithBrand product);
 
+        /// <summary>
+        /// Поиск товара по имени бренда.
+        /// </summary>
+        /// <returns></returns>
+        public Task<List<ProductWithBrand>> SearchByBrand(string name);
+
     }
 }
