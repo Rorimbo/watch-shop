@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { CartComponent } from './cart/cart.component';
-import { ModelComponent } from './model/model.component';
-import { CartItem } from './Types/CartItem';
+import { CartComponent } from './pages/cart/cart.component';
+import { ModelComponent } from './pages/model/model.component';
+import { CartItem } from './types/CartItem';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +25,7 @@ export class AppComponent {
       if (this.cartItems) {
         this.total = 0;
         this.cartItems.forEach((el) => {
-          this.total += el.totalPrice;
+          this.total += el.totalAmount;
         });
       }
       component.total = this.total;

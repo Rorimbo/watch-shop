@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { CartItem } from '../Types/CartItem';
+import { CartItem } from '../../types/CartItem';
+import { OrderService } from 'src/app/services/order/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -10,6 +10,14 @@ import { CartItem } from '../Types/CartItem';
 export class CartComponent {
   cartItems: CartItem[];
   total: number = 0;
+
+  constructor(public orderService: OrderService) {}
+
+  ngOnInit() {
+    this.orderService.getCart(1).subscribe((cartItems) => {
+      this.cartItems = cartItems;
+    });
+  }
 
   delete(item: CartItem) {
     this.cartItems.forEach((el, i) => {

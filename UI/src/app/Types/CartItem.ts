@@ -1,9 +1,13 @@
 export class CartItem {
   id: number;
-  name: string;
+  productId?: number;
+  brandId: number;
+  title?: string;
+  model?: string;
   price: number;
-  colorDial: string[];
-  totalPrice: number;
-  previewUrl: string;
-  amount: number;
+  imageUrls?: string;
+  brandName?: string;
+  brandCountry?: string;
+  quantity: number;
+  totalAmount: number;
 }

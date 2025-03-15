@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Link } from '../Types/Link';
+import { Link } from '../../types/Link';
 
 @Component({
   selector: 'app-header',

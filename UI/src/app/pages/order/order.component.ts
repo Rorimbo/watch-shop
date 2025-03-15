@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-import { AgreementDialogComponent } from '../agreement-dialog/agreement-dialog.component';
+import { DialogComponent } from '../../components/dialog/dialog.component';
+import { AgreementDialogComponent } from '../../components/agreement-dialog/agreement-dialog.component';
 
 @Component({
   selector: 'app-order',

@@ -5,16 +5,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
 // import { BrandsComponent } from './brands/brands.component';
-import { NewsComponent } from './news/news.component';
-import { AboutComponent } from './about/about.component';
-import { ModelComponent } from './model/model.component';
-import { CartComponent } from './cart/cart.component';
-import { OrderComponent } from './order/order.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { AgreementDialogComponent } from './agreement-dialog/agreement-dialog.component';
+import { NewsComponent } from './pages/news/news.component';
+import { AboutComponent } from './pages/about/about.component';
+import { ModelComponent } from './pages/model/model.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { OrderComponent } from './pages/order/order.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { AgreementDialogComponent } from './components/agreement-dialog/agreement-dialog.component';
 
 import { MatRadioModule } from '@angular/material/radio';
 import { MatInputModule } from '@angular/material/input';
@@ -23,6 +23,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialogModule } from '@angular/material/dialog';
+import { OrderService } from './services/order/order.service';
+import { OrderApiService } from './services/order/order-api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -50,8 +54,10 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
+    HttpClientModule,
+    MatSnackBarModule,
   ],
-  providers: [],
+  providers: [OrderService, OrderApiService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
