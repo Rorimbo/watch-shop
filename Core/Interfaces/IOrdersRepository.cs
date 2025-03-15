@@ -34,5 +34,26 @@ namespace Core.Interfaces
         /// <param name="userId"></param>
         /// <returns></returns>
         public Task<List<CartForView>> GetCartAsync(int userId);
+
+        /// <summary>
+        /// Создание заказа.
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns>order id</returns>
+        public Task<int> CreateOrderAsync(Order order);
+
+        /// <summary>
+        /// Добавление товара в список товаров в заказе.
+        /// </summary>
+        /// <param name="orderItems">Товар для добавления в список товаров в заказе</param>
+        /// <returns></returns>
+        public Task AddOrderItemsAsync(OrderItems orderItems);
+
+        /// <summary>
+        /// Удаление товаров из корзины.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public Task DeleteCartAsync(int id);
     }
 }

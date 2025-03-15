@@ -48,7 +48,8 @@ namespace Core.BusinessLogic
                 Title = product.Title,
                 Model = product.Model,
                 Price = product.Price,
-                ImageUrls = product.ImageUrls
+                ImageUrls = product.ImageUrls,
+                Quantity = product.Quantity
             };
 
             await _productsRepository.CreateProductAsync(newProduct);

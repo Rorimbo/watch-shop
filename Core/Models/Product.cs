@@ -8,6 +8,7 @@
         public string? Model { get; set; }
         public int Price { get; set; }
         public string? ImageUrls { get; set; }
+        public int Quantity { get; set; }
 
     }
 }

@@ -20,5 +20,12 @@ namespace Core.Interfaces
         /// <param name="userId"></param>
         /// <returns></returns>
         public Task<List<CartForView>> GetCartAsync(int userId);
+
+        /// <summary>
+        /// Оформление заказа.
+        /// </summary>
+        /// <param name="orderDetails"></param>
+        /// <returns></returns>
+        public Task<int> CreateOrderAsync(OrderDetails orderDetails);
     }
 }

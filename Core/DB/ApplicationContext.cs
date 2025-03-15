@@ -10,6 +10,7 @@ namespace Core.DB
         public DbSet<Brand> Brands => Set<Brand>();
         public DbSet<Cart> Carts => Set<Cart>();
         public DbSet<Order> Orders => Set<Order>();
+        public DbSet<OrderItems> OrderItems => Set<OrderItems>();
         public ApplicationContext() => Database.EnsureCreated();
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
@@ -29,7 +30,7 @@ namespace Core.DB
             modelBuilder.Entity<Brand>().ToTable("Brands");
             modelBuilder.Entity<Cart>().ToTable("Carts");
             modelBuilder.Entity<Order>().ToTable("Orders");
-
+            modelBuilder.Entity<OrderItems>().ToTable("OrderItems");
         }
 
     }

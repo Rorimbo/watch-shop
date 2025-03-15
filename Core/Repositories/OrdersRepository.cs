@@ -42,6 +42,7 @@ namespace Core.Repositories
                 .Join(_context.Products, c => c.ProductId, p => p.Id, (c, p) => new CartForView()
                 {
                     Id = c.Id,
+                    ProductId = c.ProductId,
                     BrandId = p.BrandId,
                     Title = p.Title,
                     Model = p.Model,
@@ -52,6 +53,7 @@ namespace Core.Repositories
                 .Join(_context.Brands, c => c.BrandId, b => b.Id, (c, b) => new CartForView()
                 {
                     Id = c.Id,
+                    ProductId = c.ProductId,
                     BrandName = b.Name,
                     BrandCountry = b.Country,
                     Title = c.Title,
@@ -64,5 +66,56 @@ namespace Core.Repositories
 
             return cartItem;
         }
+
+        public async Task<int> CreateOrderAsync(Order order)
+        {
+            await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+            return order.Id;
+        }
+
+        public async Task AddOrderItemsAsync(OrderItems orderItems)
+        {
+            await _context.OrderItems.AddAsync(orderItems);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteCartAsync(int id)
+        {
+            await _context.Carts.Where(c => c.Id == id)
+                .ExecuteDeleteAsync();
+            await _context.SaveChangesAsync();
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//var orderItem = await _context.Orders
+//    .Join(_context.OrderItems, oi => oi.OrderId, o => o.Id (o, oi) => new OrderItems()
+//    {
+//        Id = o.Id,
+//        UserId = o.UserId,
+//        TotalAmount = o.TotalAmount,
+//        ShippingAddress = o.ShippingAddress,
+//        PaymentMethod = o.PaymentMethod,
+//        OrderId = oi.OrderId,
+//        ProductId = oi.ProductId,
+//        Quantity = oi.Quantity
+//    })
+//    .Where(o => o.OrderId == orderId)
+//    .ToListAsync();
+
+//return orderItem;

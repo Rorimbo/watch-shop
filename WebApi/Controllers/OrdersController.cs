@@ -35,5 +35,13 @@ namespace WebApi.Controllers
             var cartItems = await _ordersService.GetCartAsync(userId);
             return cartItems;
         }
+
+        [HttpPost]
+        [Route("order")]
+        public async Task<int?> CreateOrderAsync(OrderDetails orderDetails)
+        {
+            var id = await _ordersService.CreateOrderAsync(orderDetails);
+            return id;
+        }
     }
 }

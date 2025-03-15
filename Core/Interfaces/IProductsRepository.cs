@@ -47,5 +47,12 @@ namespace Core.Interfaces
         /// <returns></returns>
         public Task<List<ProductWithBrand>> SearchByBrand(string name);
 
+        /// <summary>
+        /// Обновление товара в базе.
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        public Task UpdateProductAsync(Product product);
+
     }
 }
