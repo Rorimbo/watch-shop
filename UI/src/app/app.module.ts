@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
-// import { BrandsComponent } from './brands/brands.component';
+import { BrandsComponent } from './pages/brands/brands.component';
 import { NewsComponent } from './pages/news/news.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ModelComponent } from './pages/model/model.component';
@@ -33,7 +33,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    // BrandsComponent,
+    BrandsComponent,
     NewsComponent,
     AboutComponent,
     ModelComponent,

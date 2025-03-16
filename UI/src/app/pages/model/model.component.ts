@@ -4,8 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ITEMS } from 'src/app/mocks/Items';
+import { OrderService } from 'src/app/services/order/order.service';
 import { CartItem } from 'src/app/types/CartItem';
 import { Item } from 'src/app/types/Item';
+import { Cart } from 'src/app/types/Сart';
 
 @Component({
   selector: 'app-model',
@@ -19,10 +21,15 @@ export class ModelComponent {
   currentItem?: Item;
   cartItems: CartItem[];
   total: number = 0;
+  cart: Cart;
 
   orderForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(
+    public orderService: OrderService,
+    private route: ActivatedRoute,
+    public dialog: MatDialog
+  ) {
     this.orderForm = new FormGroup({
       colorDial: new FormControl('', [Validators.required]),
     });
@@ -66,6 +73,12 @@ export class ModelComponent {
 
     this.openDialog();
   }
+
+  // addCart(cart: Cart) {
+  //   return this.orderService.addCart(cart).subscribe((cart) => {
+  //     this.cart = cart;
+  //   });
+  // }
 
   openDialog() {
     this.dialog.open(DialogComponent, {

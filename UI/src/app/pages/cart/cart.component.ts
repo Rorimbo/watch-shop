@@ -20,10 +20,6 @@ export class CartComponent {
   }
 
   delete(item: CartItem) {
-    this.cartItems.forEach((el, i) => {
-      if (el == item) {
-        this.cartItems.splice(i, 1);
-      }
-    });
+    this.cartItems = this.cartItems.filter((el) => el !== item);
   }
 }

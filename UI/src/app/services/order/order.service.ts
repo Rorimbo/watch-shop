@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { OrderApiService } from './order-api.service';
-import { CartItem } from 'src/app/types/CartItem';
-import { catchError, Observable, throwError } from 'rxjs';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { catchError, Observable, throwError } from 'rxjs';
+import { Cart } from 'src/app/types/Сart';
+import { CartItem } from 'src/app/types/CartItem';
 
 @Injectable({
   providedIn: 'root',
@@ -17,6 +18,15 @@ export class OrderService {
       verticalPosition: 'top',
       duration: 10000,
     });
+  }
+
+  addCart(cart: Cart): Observable<Cart[]> {
+    return this.orderApiService.addCart(cart).pipe(
+      catchError((err) => {
+        this.openSnackBar('Ошибка получения данных');
+        return throwError(err);
+      })
+    );
   }
 
   getCart(userId: number): Observable<CartItem[]> {
