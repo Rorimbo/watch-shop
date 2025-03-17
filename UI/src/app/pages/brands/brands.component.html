@@ -1,1 +1,8 @@
-<p>brands works!</p>
+<div *ngFor="let product of products">
+  <button (click)="addToCart(product.id!)">+</button>
+  <h2>{{ product.title }}</h2>
+  <p>{{ product.model }}</p>
+  <p>{{ product.brandName }}</p>
+  <p>{{ product.brandCountry }}</p>
+  <p>{{ product.price }}</p>
+</div>

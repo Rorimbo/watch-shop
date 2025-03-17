@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { ProductApiService } from '../product/product-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Products } from 'src/app/types/Products';
-import { ProductsWithBrands } from 'src/app/types/ProductsWithBrands';
+import { Product } from 'src/app/types/product';
+import { Cart } from 'src/app/types/cart';
 
 @Injectable({
   providedIn: 'root',
@@ -20,10 +20,25 @@ export class ProductService {
     });
   }
 
-  getAllProducts(): Observable<ProductsWithBrands[]> {
+  getAllProducts(): Observable<Product[]> {
     return this.productApiService.getAllProducts().pipe(
       catchError((err) => {
         this.openSnackBar('Ошибка получения данных');
+        return throwError(err);
+      })
+    );
+  }
+
+  updateCart(productId: number, quantity: number): Observable<void> {
+    let cart: Cart = {
+      productId: productId,
+      userId: 1,
+      quantity: quantity,
+    };
+
+    return this.productApiService.updateCart(cart).pipe(
+      catchError((err) => {
+        this.openSnackBar('Ошибка добавления в корзину');
         return throwError(err);
       })
     );

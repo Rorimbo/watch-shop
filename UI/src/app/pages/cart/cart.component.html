@@ -13,7 +13,9 @@
               </div>
             </div>
             <div class="column count-column">
+              <button (click)="removeFromCart(item)">-</button>
               Количество: {{ item.quantity }}
+              <button (click)="addToCart(item)">+</button>
             </div>
             <div class="column price-column">
               Итого: {{ item.totalAmount }} ₽

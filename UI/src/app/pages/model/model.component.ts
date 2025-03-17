@@ -5,9 +5,9 @@ import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
 import { ITEMS } from 'src/app/mocks/Items';
 import { OrderService } from 'src/app/services/order/order.service';
-import { CartItem } from 'src/app/types/CartItem';
+import { CartItem } from 'src/app/types/cart-item';
 import { Item } from 'src/app/types/Item';
-import { Cart } from 'src/app/types/Сart';
+import { Cart } from 'src/app/types/cart';
 
 @Component({
   selector: 'app-model',

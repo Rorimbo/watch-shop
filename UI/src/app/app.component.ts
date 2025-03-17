@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CartComponent } from './pages/cart/cart.component';
 import { ModelComponent } from './pages/model/model.component';
-import { CartItem } from './types/CartItem';
+import { CartItem } from './types/cart-item';
 
 @Component({
   selector: 'app-root',

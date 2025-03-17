@@ -2,8 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { OrderApiService } from './order-api.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
-import { Cart } from 'src/app/types/Сart';
-import { CartItem } from 'src/app/types/CartItem';
+import { Cart } from 'src/app/types/cart';
+import { CartItem } from 'src/app/types/cart-item';
 
 @Injectable({
   providedIn: 'root',
