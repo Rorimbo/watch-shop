@@ -1,13 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DialogComponent } from 'src/app/components/dialog/dialog.component';
-import { ITEMS } from 'src/app/mocks/Items';
-import { OrderService } from 'src/app/services/order/order.service';
+import { ITEMS } from 'src/app/Mocks/Items';
 import { CartItem } from 'src/app/types/cart-item';
 import { Item } from 'src/app/types/Item';
-import { Cart } from 'src/app/types/cart';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Product } from 'src/app/types/product';
 
 @Component({
   selector: 'app-model',
@@ -17,68 +16,58 @@ import { Cart } from 'src/app/types/cart';
 })
 export class ModelComponent {
   id: number;
-  items: Item[] = ITEMS;
+  items: Item[];
   currentItem?: Item;
   cartItems: CartItem[];
   total: number = 0;
-  cart: Cart;
-
-  orderForm: FormGroup;
+  products: Product[];
 
   constructor(
-    public orderService: OrderService,
-    private route: ActivatedRoute,
+    public productService: ProductService,
+    public route: ActivatedRoute,
     public dialog: MatDialog
   ) {
-    this.orderForm = new FormGroup({
-      colorDial: new FormControl('', [Validators.required]),
-    });
-
     route.params.subscribe((params) => (this.id = params['id']));
     this.currentItem = this.items.find((item) => item.id == this.id);
   }
 
-  submitForm() {
-    // if (
-    //   this.cartItems.find(
-    //     (el) =>
-    //       el.id == this.id &&
-    //       el.colorDial == this.orderForm.get('colorDial')?.value
-    //   )
-    // ) {
-    //   this.cartItems = this.cartItems.map((el) => {
-    //     if (
-    //       el.id == this.id &&
-    //       el.colorDial == this.orderForm.get('colorDial')?.value
-    //     ) {
-    //       el.amount = el.amount + 1;
-    //       el.totalPrice = el.amount * el.price;
-    //     }
-    //     return el;
-    //   });
-    // } else {
-    //   if (this.currentItem) {
-    //     let newCartItem: CartItem = {
-    //       id: this.currentItem.id,
-    //       name: this.currentItem.name,
-    //       colorDial: this.orderForm.get('colorDial')?.value,
-    //       price: this.currentItem.price,
-    //       totalPrice: this.currentItem.price,
-    //       previewUrl: this.currentItem.previewUrl,
-    //       amount: 1,
-    //     };
-    //     this.cartItems.unshift(newCartItem);
-    //   }
-    // }
-
-    this.openDialog();
-  }
-
-  // addCart(cart: Cart) {
-  //   return this.orderService.addCart(cart).subscribe((cart) => {
-  //     this.cart = cart;
+  // ngOnInit() {
+  //   this.productService.getProductId(item).subscribe(() => {
+  //     this.id = product.id;
   //   });
   // }
+
+  // submitForm() {
+  //   if (this.cartItems.find((el) => el.id == this.id)) {
+  //     this.cartItems = this.cartItems.map((el) => {
+  //       if (el.id == this.id) {
+  //         el.price = el.price * el.quantity;
+  //         el.totalAmount += el.price;
+  //       }
+  //       return el;
+  //     });
+  //   } else {
+  //     if (this.currentItem) {
+  //       let newCartItem: CartItem = {
+  //         id: this.currentItem.id,
+  //         brandId: this.currentItem.brandId,
+  //         model: this.currentItem.model,
+  //         price: this.currentItem.price,
+  //         brandName: this.currentItem.brandName,
+  //         brandCountry: this.currentItem.brandCountry,
+  //         totalAmount: this.currentItem.price,
+  //         quantity: 1,
+  //       };
+  //       this.cartItems.unshift(newCartItem);
+  //     }
+  //   }
+
+  //   this.openDialog();
+  // }
+
+  addToCart(productId: number) {
+    this.productService.updateCart(productId, 1).subscribe();
+  }
 
   openDialog() {
     this.dialog.open(DialogComponent, {

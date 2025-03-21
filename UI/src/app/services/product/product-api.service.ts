@@ -16,6 +16,10 @@ export class ProductApiService {
     return this.http.get<Product[]>(`https://localhost:7133/products/all`);
   }
 
+  getProductId(id: number): Observable<Product[]> {
+    return this.http.get<Product[]>(`https://localhost:7133/products/info/${id}`);
+  }
+
   updateCart(cart: Cart): Observable<void> {
     return this.http.post<void>(`https://localhost:7133/orders/cart`, cart);
   }

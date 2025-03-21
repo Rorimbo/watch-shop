@@ -6,6 +6,7 @@ import { Product } from 'src/app/types/product';
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.css'],
+  
 })
 export class BrandsComponent {
   products: Product[] = [];

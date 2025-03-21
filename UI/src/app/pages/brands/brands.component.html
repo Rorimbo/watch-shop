@@ -1,8 +1,13 @@
-<div *ngFor="let product of products">
-  <button (click)="addToCart(product.id!)">+</button>
-  <h2>{{ product.title }}</h2>
-  <p>{{ product.model }}</p>
-  <p>{{ product.brandName }}</p>
-  <p>{{ product.brandCountry }}</p>
-  <p>{{ product.price }}</p>
+<div class="item-blocks">
+  <div *ngFor="let product of products"  class="item-block">
+    <a class="item-link" [routerLink]="'model/' + product.id">
+      <img class="item-img" [src]="product.imageUrls" [alt]="product.model"
+    />
+    <button (click)="addToCart(product.id!)">Добавить в корзину</button>
+    <h2 class="item-text">{{ product.title }}</h2>
+    <p>{{ product.model }}</p>
+    <p>{{ product.brandName }}</p>
+    <p>{{ product.brandCountry }}</p>
+    <p class="item-price">{{ product.price }}</p></a>
+  </div>
 </div>

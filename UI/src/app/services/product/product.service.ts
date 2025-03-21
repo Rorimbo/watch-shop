@@ -29,6 +29,15 @@ export class ProductService {
     );
   }
 
+  getProductId(id: number): Observable<Product[]>{
+    return this.productApiService.getProductId(id).pipe(
+      catchError((err) => {
+        this.openSnackBar('Ошибка получения данных');
+        return throwError(err);
+      })
+    );
+  }
+
   updateCart(productId: number, quantity: number): Observable<void> {
     let cart: Cart = {
       productId: productId,

@@ -1,35 +1,8 @@
-<div class="model-swiper">
-  <div class="model" *ngIf="this.currentItem">
-    <ng-template *ngFor="let url of this.currentItem.imagesUrls">
-      <img [src]="url" alt="Slider" />
-    </ng-template>
-
-    <form
-      class="model-params"
-      [formGroup]="orderForm"
-      (ngSubmit)="submitForm()"
-    >
-      <h2 class="model-text">{{ currentItem.name | uppercase }}</h2>
-
-      <div class="model-sizes">
-        <mat-radio-group
-          aria-label="Select an option"
-          formControlName="colorDial"
-          class="radio-group"
-          >Страна:
-          <mat-radio-button
-            *ngFor="let colorDial of currentItem.colorDial"
-            class="model-size"
-            [value]="colorDial"
-          >
-            {{ colorDial }}
-          </mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <button type="submit" [disabled]="orderForm.invalid" class="btn">
-        {{ "добавить в корзину" | uppercase }}
-      </button>
-    </form>
+<div class="model" *ngIf="this.currentItem">
+  <div class="model-params">
+    <h2 class="model-text">{{ currentItem.model | uppercase }}</h2>
+    <button (click)="addToCart(currentItem.id!)" class="btn">
+      {{ "добавить в корзину" | uppercase }}
+    </button>
   </div>
 </div>
-<!-- (click)="addCart()" -->
