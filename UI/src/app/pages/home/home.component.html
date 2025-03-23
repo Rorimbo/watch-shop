@@ -1,1 +1,42 @@
-<p>home works!</p>
+<!-- home.component.html -->
+<h2>{{ title }}</h2>
+<p>
+  Приветствуем вас в нашем магазине часов! Мы предлагаем широкий ассортимент
+  часов различных стилей и ценовых категорий. Наша команда экспертов готова
+  помочь вам выбрать идеальные часы, которые идеально подойдут вашему стилю и
+  предпочтениям. Мы ценим каждого нашего клиента и стремимся предоставить вам
+  лучший опыт покупок. Спасибо, что выбрали наш магазин!
+</p>
+
+<div class="home-blocks">
+  <div class="home-block">
+    <h2>Товары</h2>
+    <div class="brands-home-block">
+      <app-brands [limit]="3"></app-brands>
+      <div class="item-block">
+        <a [routerLink]="'brands'" class="item-block-button-link">
+          <button class="item-block-button">Перейти ко всем товарам</button>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="home-block">
+    <h2>Скидки</h2>
+    <div *ngFor="let discount of discounts$ | async">
+      {{ discount.name }} - {{ discount.description }}
+    </div>
+
+    <div *ngIf="isDiscountEmpty">Скидок пока нет...</div>
+  </div>
+
+  <div class="home-block">
+    <h2>Отзывы</h2>
+    <ul>
+      <li *ngFor="let review of reviews$ | async">
+        {{ review.name }} - {{ review.text }}
+      </li>
+    </ul>
+    <div *ngIf="isReviewEmpty">Отзывов пока нет...</div>
+  </div>
+</div>

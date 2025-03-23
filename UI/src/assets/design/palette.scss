@@ -1,0 +1,46 @@
+// Вариант 1
+// #F2F3AE
+// #916953
+// #CF8E80
+// #020122
+// #FCDDF2
+
+// Вариант 2
+// A5D8FF
+// A569BD
+// 7D4F97
+// 543570
+// 2B1B49
+// 020122
+
+// Вариант 3
+// E3E4DB - цвет хедера
+// CDCDCD - цвет фона
+// A569BD - наведение на акцент (если не опасити)
+// 7D4F97 - акцент (primary)
+// 645244 - secondary
+// 020122 - цвет шрифта
+
+// Вариант 4
+// E3E4DB - цвет хедера
+// CDCDCD - цвет фона
+// 77A8A7 - accent
+// 218380 - primary
+// 124251 - secondary
+// 020122 - цвет шрифта
+
+$color-header: #e3e4db;
+$color-background: #cdcdcd;
+$color-accent: #77a8a7;
+$color-primary: #218380;
+$color-secondary: #124251;
+
+$color-text: #020122;
+$color-secondary-text: #e3e4db;
+
+$color-border: #cdcdcd;
+$color-secondary-border: #e3e4db;
+
+$color-primary-hover: #218380a2;
+$color-secondary-hover: #124251a2;
+$color-accent-hover: #77a8a7a2;

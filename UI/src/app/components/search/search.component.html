@@ -1,0 +1,24 @@
+<div class="search-container">
+  <input
+    class="search-field"
+    matInput
+    type="search"
+    [(ngModel)]="searchQuery"
+    (input)="search()"
+    placeholder="Поиск по бренду"
+    autocomplete="off"
+  />
+
+  <div *ngIf="searchResults.length > 0" class="search-results">
+    <div *ngFor="let item of searchResults" class="search-result">
+      <div (click)="navigateToProductDetails(item.id!)">
+        <h3>{{ item.brandName }} {{ item.model }}</h3>
+        <p>Цена: {{ item.price | currency }}</p>
+        <p>Страна производителя: {{ item.brandCountry }}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="searchResults.length === 0 && searchQuery" class="no-results">
+    Товары не найдены
+  </div>
+</div>

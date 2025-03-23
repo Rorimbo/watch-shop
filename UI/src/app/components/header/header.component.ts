@@ -4,7 +4,7 @@ import { Link } from '../../types/Link';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
   @Input('total') total: number = 0;

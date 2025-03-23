@@ -1,0 +1,17 @@
+<div class="item-block">
+  <a class="item-block-button-link">
+    <button class="item-block-button" (click)="navigateToModel()">
+      Перейти к товару
+    </button>
+  </a>
+  <!-- <img
+    *ngIf="product.imageUrls"
+    [src]="product.imageUrls[0]"
+    alt="{{ product.title }}"
+  /> -->
+  <h3>{{ product.brandName }} {{ product.model }}</h3>
+  <!-- <h3>{{ product.title }}</h3> -->
+
+  <p>Цена: {{ product.price | currency }}</p>
+  <p>Страна производителя: {{ product.brandCountry }}</p>
+</div>

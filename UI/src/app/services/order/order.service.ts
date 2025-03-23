@@ -20,8 +20,8 @@ export class OrderService {
     });
   }
 
-  addCart(cart: Cart): Observable<Cart[]> {
-    return this.orderApiService.addCart(cart).pipe(
+  addToCart(cart: Cart): Observable<Cart[]> {
+    return this.orderApiService.addToCart(cart).pipe(
       catchError((err) => {
         this.openSnackBar('Ошибка получения данных');
         return throwError(err);

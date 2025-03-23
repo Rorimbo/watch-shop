@@ -24,7 +24,7 @@ namespace Core.Repositories
                 Title = p.Title,
                 Model = p.Model,
                 Price = p.Price,
-                ImageUrls = p.ImageUrls,
+                ImageUrls = String.IsNullOrEmpty(p.ImageUrls) ? null : p.ImageUrls.Split(';', StringSplitOptions.None).ToList<string>(),
                 BrandName = b.Name,
                 BrandCountry = b.Country,
             }).ToListAsync();
@@ -40,7 +40,7 @@ namespace Core.Repositories
                 Title = p.Title,
                 Model = p.Model,
                 Price = p.Price,
-                ImageUrls = p.ImageUrls,
+                ImageUrls = String.IsNullOrEmpty(p.ImageUrls) ? null : p.ImageUrls.Split(';', StringSplitOptions.None).ToList<string>(),
                 BrandName = b.Name,
                 BrandCountry = b.Country,
             })
@@ -83,6 +83,7 @@ namespace Core.Repositories
                 Model = p.Model,
                 BrandName = b.Name,
                 BrandCountry = b.Country,
+                Price = p.Price
             })
                 .Where(b => b.BrandName.ToLower().Contains(name.ToLower()))
                 .ToListAsync();

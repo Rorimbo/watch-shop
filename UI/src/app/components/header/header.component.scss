@@ -1,9 +1,16 @@
+@import "../../../assets/design/palette.scss";
+@import "../../../assets/design/fonts/fonts.scss";
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 4em;
-  margin: 2em;
+  width: 100%;
+  padding: 1em 2em;
+
+  box-sizing: border-box;
+  background-color: $color-header;
 }
 
 .menu-icon {
@@ -19,7 +26,9 @@
   align-items: center;
   justify-content: flex-start;
   width: 10%;
-  font-size: 20px;
+  font-size: 24px;
+  font-weight: 800;
+  font-family: $header-font !important;
 }
 
 .logo img {
@@ -36,16 +45,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: $header-font !important;
 }
 
 .nav-link {
-  color: #8f04a8;
+  color: $color-primary;
+  font-family: $header-font !important;
 }
 
 .nav-link:hover {
-  color: #c26bd1;
+  color: $color-accent;
   text-decoration: none;
-  /*text-shadow: #c26bd1 0 0 1px; /* толщина тени */
+  /*text-shadow: $color-accent 0 0 1px; /* толщина тени */
 }
 
 .nav-link:not(:hover) {
@@ -57,7 +68,7 @@
 }
 
 .nav-link.active:not(:hover) {
-  color: #bc38d3;
+  color: $color-text;
 }
 
 .cart {
@@ -67,7 +78,7 @@
 }
 
 .cart-text {
-  color: #8f04a8;
+  color: $color-primary;
 }
 
 .cart-text:not(:hover) {
@@ -76,15 +87,20 @@
 
 .cart-text.active {
   text-decoration: underline;
-  color: #bc38d3;
+  color: $color-text;
 }
 
 .cart-text:hover {
-  color: #c26bd1;
+  color: $color-accent;
 }
 
 .cart-icon {
   text-decoration: none;
+}
+
+.cart-icon-img,
+.menu-icon-img {
+  height: 2rem;
 }
 
 .icon {

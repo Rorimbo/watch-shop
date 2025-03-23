@@ -44,7 +44,7 @@ namespace WebApi.Controllers
         }
 
         [HttpGet]
-        [Route("search")]
+        [Route("search/{name}")]
         public async Task<List<ProductWithBrand>> SearchByBrand(string name)
         {
             var brandName = await _productsService.SearchByBrand(name);

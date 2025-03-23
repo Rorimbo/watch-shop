@@ -2,6 +2,7 @@
 using Core.Interfaces;
 using Core.Models;
 using Core.Repositories;
+using System.Linq;
 
 namespace Core.BusinessLogic
 {
@@ -48,7 +49,7 @@ namespace Core.BusinessLogic
                 Title = product.Title,
                 Model = product.Model,
                 Price = product.Price,
-                ImageUrls = product.ImageUrls,
+                ImageUrls = product.ImageUrls.Count > 0 ? string.Join(';', product.ImageUrls) : null,
                 Quantity = product.Quantity
             };
 

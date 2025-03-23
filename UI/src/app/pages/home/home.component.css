@@ -1,0 +1,18 @@
+h1 {
+  color: #333;
+}
+
+.home-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 3em;
+}
+
+.brands-home-block {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+}
+
+.item-block button {
+  opacity: 1;
+}

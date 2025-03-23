@@ -1,0 +1,51 @@
+@import "../../../assets/design/palette.scss";
+
+.search-container {
+  position: relative;
+}
+
+.search-container input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid $color-border;
+  border-radius: 5px;
+  background-color: $color-header;
+}
+.search-container .clear-search {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.search-container .search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: $color-header;
+  border: 1px solid $color-border;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1000;
+}
+.search-container .search-result {
+  padding: 10px;
+  border-bottom: 1px solid $color-border;
+}
+.search-container .search-result:last-child {
+  border-bottom: none;
+}
+.search-container .no-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: $color-header;
+  border: 1px solid $color-border;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  z-index: 1;
+}

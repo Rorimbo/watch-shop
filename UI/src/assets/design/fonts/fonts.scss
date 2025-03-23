@@ -1,0 +1,18 @@
+$main-font: "TMC", sans-serif;
+$header-font: "Ostrovsky", sans-serif;
+
+@font-face {
+  font-family: "Ostrovsky";
+  src: url("../fonts/Ostrovsky/Ostrovsky-Bold_0.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Kyiv";
+  src: url("../fonts/KyivTypeTitling/KyivTypeTitling-VarGX.ttf")
+    format("truetype");
+}
+
+@font-face {
+  font-family: "TMC";
+  src: url("../fonts/TheanoModernC/theanomodernc.ttf") format("truetype");
+}

@@ -12,7 +12,7 @@ export class OrderApiService {
 
   constructor() {}
 
-  addCart(cart: Cart): Observable<Cart[]> {
+  addToCart(cart: Cart): Observable<Cart[]> {
     return this.http.post<Cart[]>(`https://localhost:7133/orders/cart`, cart);
   }
 

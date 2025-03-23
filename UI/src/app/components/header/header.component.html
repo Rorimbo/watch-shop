@@ -6,7 +6,7 @@
       aria-label="Example icon-button with a menu"
       class="menu-icon"
     >
-      <mat-icon>menu</mat-icon>
+      <img class="menu-icon-img" src="../../assets/menu.svg" alt="menu" />
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item *ngFor="let link of links">
@@ -17,7 +17,9 @@
     </mat-menu>
   </div>
 
-  <a routerLink="" class="logo"> TimeCraft </a>
+  <a routerLink="" class="logo">TimeCraft</a>
+
+  <app-search></app-search>
 
   <div class="links">
     <div class="link" *ngFor="let link of links">
@@ -29,7 +31,11 @@
 
   <div class="cart">
     <a class="cart-icon" routerLink="/cart" routerLinkActive="active">
-      <mat-icon class="icon">shopping_cart</mat-icon>
+      <img
+        class="cart-icon-img"
+        src="../../assets/shopping_cart.svg"
+        alt="cart"
+      />
     </a>
     <!-- <a class="cart-text" routerLink="/cart" routerLinkActive="active">
       {{ "корзина (" + total + "₽)" | uppercase }}

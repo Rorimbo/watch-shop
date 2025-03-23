@@ -1,23 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { map } from 'rxjs';
 import { ProductService } from 'src/app/services/product/product.service';
-import { Product } from 'src/app/types/product';
 
 @Component({
   selector: 'app-brands',
   templateUrl: './brands.component.html',
   styleUrls: ['./brands.component.css'],
-  
 })
 export class BrandsComponent {
-  products: Product[] = [];
+  @Input() limit: number;
+
+  products$ = this.productService.getAllProducts().pipe(
+    map((products) => {
+      if (this.limit) {
+        return products.slice(0, this.limit);
+      }
+      return products;
+    })
+  );
 
   constructor(public productService: ProductService) {}
 
-  ngOnInit() {
-    this.productService.getAllProducts().subscribe((products) => {
-      this.products = products;
-    });
-  }
+  ngOnInit() {}
 
   addToCart(productId: number) {
     this.productService.updateCart(productId, 1).subscribe();

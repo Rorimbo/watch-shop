@@ -1,8 +1,74 @@
-<div class="model" *ngIf="this.currentItem">
+<div class="model" *ngIf="currentItem">
+  <div class="model-swiper" *ngIf="currentItem.imageUrls">
+    <swiper
+      [slidesPerView]="3"
+      [spaceBetween]="30"
+      [loop]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [navigation]="true"
+      class="swiper"
+    >
+      <ng-template
+        swiperSlide
+        *ngFor="let imageUrl of currentItem.imageUrls; let j = index"
+      >
+        <div class="swiper-image">
+          <img
+            class="model-image"
+            [src]="imageUrl"
+            [alt]="currentItem.brandName + ' ' + currentItem.model"
+            (click)="openModal(j)"
+          />
+        </div>
+      </ng-template>
+    </swiper>
+  </div>
+
   <div class="model-params">
-    <h2 class="model-text">{{ currentItem.model | uppercase }}</h2>
+    <h2>{{ currentItem.brandName }} {{ currentItem.model }}</h2>
+    <p>Цена: {{ currentItem.price | currency }}</p>
+    <p>Страна производителя: {{ currentItem.brandCountry }}</p>
+  </div>
+
+  <div class="add-cart-button">
     <button (click)="addToCart(currentItem.id!)" class="btn">
       {{ "добавить в корзину" | uppercase }}
     </button>
+    <div *ngIf="showTooltip" class="tooltip">
+      {{ "Товар успешно добавлен в корзину" | uppercase }}
+    </div>
+  </div>
+</div>
+
+<div class="modal" *ngIf="selectedImageId">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+
+    <swiper
+      [slidesPerView]="1"
+      [spaceBetween]="30"
+      [loop]="true"
+      [pagination]="{
+        clickable: true
+      }"
+      [keyboard]="true"
+      [navigation]="true"
+      [initialSlide]="selectedImageId"
+      class="swiper"
+    >
+      <ng-template
+        swiperSlide
+        *ngFor="let imageUrl of currentItem?.imageUrls; let i = index"
+      >
+        <div class="swiper-image">
+          <img
+            [src]="imageUrl"
+            [alt]="currentItem?.brandName + ' ' + currentItem?.model"
+          />
+        </div>
+      </ng-template>
+    </swiper>
   </div>
 </div>

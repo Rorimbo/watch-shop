@@ -1,13 +1,5 @@
 <div class="item-blocks">
-  <div *ngFor="let product of products"  class="item-block">
-    <a class="item-link" [routerLink]="'model/' + product.id">
-      <img class="item-img" [src]="product.imageUrls" [alt]="product.model"
-    />
-    <button (click)="addToCart(product.id!)">Добавить в корзину</button>
-    <h2 class="item-text">{{ product.title }}</h2>
-    <p>{{ product.model }}</p>
-    <p>{{ product.brandName }}</p>
-    <p>{{ product.brandCountry }}</p>
-    <p class="item-price">{{ product.price }}</p></a>
-  </div>
+  <ng-container *ngFor="let product of products$ | async">
+    <app-product [product]="product"></app-product>
+  </ng-container>
 </div>

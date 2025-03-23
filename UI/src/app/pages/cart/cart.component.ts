@@ -33,7 +33,7 @@ export class CartComponent {
   }
 
   addToCart(cartitem: CartItem) {
-    this.productService.updateCart(cartitem.productId!, +1).subscribe(() => {
+    this.productService.updateCart(cartitem.productId!, 1).subscribe(() => {
       cartitem.quantity += 1;
     });
   }

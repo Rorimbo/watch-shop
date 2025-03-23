@@ -1,0 +1,264 @@
+@import "assets/design/palette.scss";
+@import "assets/design/fonts/fonts.scss";
+
+@import "assets/design/background.scss";
+@import "swiper/css/bundle";
+
+* {
+  margin: 0;
+  font-family: $main-font !important;
+}
+
+body {
+  color: $color-text;
+  font-family: $main-font;
+  min-height: 100vh;
+}
+
+h1 {
+  font-family: $header-font !important;
+}
+
+a {
+  color: $color-primary;
+  text-decoration: none;
+}
+
+.mdc-form-field {
+  display: flex !important;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.mdc-form-field label {
+  /* цвет текста лейбла в радио и чекбоксе */
+  color: #aaaaaa;
+  margin: 0 !important;
+  padding: 0 !important;
+  cursor: pointer;
+}
+
+.mat-mdc-radio-checked label,
+.mat-mdc-checkbox-checked label {
+  /* цвет текста активного радио и чекбокса */
+  color: #333333;
+}
+
+.mdc-form-field:hover label {
+  /* цвет текста радио и чекбокса при наведении */
+  color: #333333;
+}
+
+.mat-mdc-radio-button {
+  width: 100% !important;
+  /* цвет фигуры */
+  --mdc-radio-unselected-icon-color: #c262d3; /* изначальный */
+  --mdc-radio-unselected-pressed-icon-color: #8f04a8; /* удержание */
+  --mdc-radio-unselected-focus-icon-color: #bc38d3; /* нажатие и отведение */
+  --mdc-radio-unselected-hover-icon-color: #bc38d3; /* наведение */
+  --mat-mdc-radio-ripple-color: #c262d3; /* фон предвыбора */
+  --mdc-theme-text-primary-on-background: #333333;
+  --mdc-radio-disabled-selected-icon-color: #333333;
+  --mdc-radio-disabled-unselected-icon-color: #333333;
+}
+
+.mat-accent {
+  /* цвет выбора */
+  --mdc-radio-selected-focus-icon-color: #333333 !important;
+  --mdc-radio-selected-hover-icon-color: #c26bd1 !important; /* наведение */
+  --mdc-radio-selected-icon-color: #bc38d3 !important; /* выбранный */
+  --mdc-radio-selected-pressed-icon-color: #8f04a8 !important; /* удержание */
+  --mat-mdc-radio-checked-ripple-color: #c26bd1 !important; /* фон */
+}
+
+.mat-mdc-checkbox.mat-accent {
+  /* цвет фигуры */
+  --mdc-checkbox-unselected-icon-color: #c262d3; /* изначальный */
+  --mdc-checkbox-unselected-pressed-icon-color: #8f04a8; /* удержание */
+  --mdc-checkbox-unselected-focus-icon-color: #bc38d3; /* нажатие и отведение */
+  --mdc-checkbox-unselected-hover-icon-color: #bc38d3; /* наведение */
+  --mdc-checkbox-disabled-selected-icon-color: #333333;
+  --mdc-checkbox-disabled-unselected-icon-color: #333333;
+
+  /* цвет выбора */
+  --mdc-checkbox-selected-checkmark-color: #ffffff; /* цвет выбора */
+  --mdc-checkbox-selected-focus-icon-color: #8f04a8;
+  --mdc-checkbox-selected-hover-icon-color: #c26bd1; /* наведение */
+  --mdc-checkbox-selected-icon-color: #bc38d3; /* выбранный */
+  --mdc-checkbox-selected-pressed-icon-color: #8f04a8; /* удержание */
+}
+
+// .btn {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   background-color: $color-primary;
+//   color: $color-header;
+//   height: 35px;
+//   width: 250px;
+//   font-size: 15px;
+//   border-style: none;
+//   text-decoration: none;
+//   border-radius: 2vh;
+//   cursor: pointer;
+// }
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+/* Отображение карточки продукта */
+
+/* Контейнер для блоков */
+.item-blocks {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  row-gap: 20px;
+  width: 100%;
+}
+
+/* Блоки внутри контейнера */
+.item-block {
+  height: 100%;
+  width: 100%;
+  min-width: 22vw;
+  box-sizing: border-box;
+
+  padding: 10px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+/* Блоки внутри контейнера при наведении*/
+.item-block:hover {
+  background: $color-accent;
+  opacity: 0.7;
+}
+
+/* Кнопка внутри контейнера при наведении*/
+.item-block:hover .item-block-button {
+  opacity: 1;
+}
+
+/* Стилизация кнопки внутри блока */
+.btn,
+.item-block-button {
+  width: 75%;
+  font-size: 17px;
+  color: $color-secondary-text;
+  background: $color-accent;
+  border: 3px solid $color-secondary-text;
+  font-weight: 500;
+  text-transform: uppercase;
+  padding: 10px;
+  // font-family: "Open Sans", sans-serif;
+
+  transition: opacity 0.3s ease-in-out;
+}
+
+.item-block-button {
+  opacity: 0;
+}
+.item-block-button-link {
+  position: relative;
+  top: 40%;
+  left: 12.5%;
+}
+
+/* Стилизация кнопки при наведении*/
+.item-block-button:hover {
+  background: $color-header;
+  color: $color-accent;
+  cursor: pointer;
+}
+
+.btn {
+  background-color: $color-primary;
+  width: fit-content;
+  padding: 2em;
+}
+
+.btn:hover {
+  color: $color-secondary-text;
+  background-color: $color-primary-hover;
+  cursor: pointer;
+}
+
+/* * div {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #333;
+}
+
+p {
+  color: #666;
+} */
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  border-radius: 3vh;
+  /*--swiper-theme-color: #bc38d3; /* цвет всех элементов слайдера*/
+  // --swiper-pagination-bullet-hieght: 20px; /* размер кружков */
+  // --swiper-pagination-bullet-width: 8px; /* размер кружков */
+  // --swiper-navigation-size: 50px; /* размер навигации */
+  font-weight: 500; /* толщина навигации */
+}
+
+.swiper-pagination {
+  /* высота кружков */
+  bottom: 0%;
+}
+
+.swiper-pagination-bullet {
+  /* цвет кружков */
+  background-color: $color-primary;
+}
+
+.swiper-pagination-bullet-active {
+  /* цвет активного кружка */
+  background-color: $color-primary;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  /* высота и цвет навигации */
+  color: $color-primary;
+  top: 50%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  // background: #333;
+  margin: 0;
+
+  /* Center slide text vertically 
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center; */
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
