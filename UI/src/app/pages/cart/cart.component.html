@@ -1,7 +1,7 @@
 <div class="cart">
   <h3 class="title">{{ "корзина" | uppercase }}</h3>
 
-  <div *ngIf="cartItems && cartItems.length; else empty">
+  <div *ngIf="cartItems?.length; else empty">
     <div class="products">
       <ul class="cart-list">
         <li class="cart-item" *ngFor="let item of cartItems">
@@ -36,11 +36,19 @@
     <div class="btn-text">
       <p class="text">Товаров на сумму: {{ this.totalAmount }} ₽</p>
     </div>
-  </div>
 
-  <ng-template #empty>
-    <div class="empty">{{ "ваша корзина пуста" | uppercase }}</div>
-  </ng-template>
+    <app-order
+      [cart]="cartItems"
+      [totalAmount]="totalAmount"
+      (onOrderReady)="onOrderReady()"
+    ></app-order>
+  </div>
 </div>
 
-<app-order [cart]="cartItems" [totalAmount]="totalAmount"></app-order>
+<div *ngIf="showTooltip" class="tooltip">
+  {{ "Заказ оформлен" | uppercase }}
+</div>
+
+<ng-template #empty>
+  <div class="empty">{{ "ваша корзина пуста" | uppercase }}</div>
+</ng-template>

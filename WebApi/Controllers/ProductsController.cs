@@ -1,7 +1,7 @@
 ﻿using Core.BusinessLogic;
 using Core.DB;
 using Core.Interfaces;
-using Core.Models;
+using Core.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers

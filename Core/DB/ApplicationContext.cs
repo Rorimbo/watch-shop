@@ -1,4 +1,5 @@
 ﻿using Core.Models;
+using Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.DB

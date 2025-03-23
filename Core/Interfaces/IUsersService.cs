@@ -1,4 +1,5 @@
-﻿using Core.Models;
+﻿using Core.Models.DTO;
+using Core.Models.Entities;
 
 namespace Core.Interfaces
 {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AgreementDialogComponent } from '../../components/agreement-dialog/agreement-dialog.component';
@@ -14,6 +14,7 @@ import { CartItem } from 'src/app/types/cart-item';
 export class OrderComponent {
   @Input() cart: CartItem[];
   @Input() totalAmount: number;
+  @Output() onOrderReady = new EventEmitter();
 
   orderForm: FormGroup;
   isSelectPickup: boolean;
@@ -67,7 +68,7 @@ export class OrderComponent {
     };
 
     this.orderService.createOrder(orderDetails).subscribe(() => {
-      // this.orderForm = orderDetails;
+      this.onOrderReady.emit();
     });
   }
 

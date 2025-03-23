@@ -1,6 +1,8 @@
 ﻿using Core.DB;
 using Core.Interfaces;
 using Core.Models;
+using Core.Models.DTO;
+using Core.Models.Entities;
 using Core.Repositories;
 
 namespace Core.BusinessLogic
@@ -18,22 +20,24 @@ namespace Core.BusinessLogic
             _productRepository = new ProductsRepository(_context);
         }
 
-        public async Task AddCartAsync(Cart cart)
+        public async Task AddCartItemAsync(CartItem cartItem)
         {
-            var cartItem = await _ordersRepository.FindCartItemAsync(cart);
+            var cart = new Cart() { ProductId = cartItem.ProductId, Quantity = cartItem.Quantity, UserId = cartItem.UserId };
 
-            if (cartItem == null)
+            var item = await _ordersRepository.FindCartItemAsync(cart);
+
+            if (item == null)
             {
                 await _ordersRepository.AddCartAsync(cart);
             }
             else
             {
-                cartItem.Quantity += cart.Quantity;
-                await _ordersRepository.UpdateCartAsync(cartItem);
+                item.Quantity += cartItem.Quantity;
+                await _ordersRepository.UpdateCartAsync(item);
             }
         }
 
-        public async Task<List<CartForView>> GetCartAsync(int userId)
+        public async Task<List<CartItem>> GetCartAsync(int userId)
         {
             var cartItems = await _ordersRepository.GetCartAsync(userId);
             return cartItems;
@@ -55,29 +59,18 @@ namespace Core.BusinessLogic
             {
                 var orderItem = new OrderItems()
                 {
-                    ProductId = cartItem.ProductId.Value,
+                    ProductId = cartItem.ProductId,
                     Quantity = cartItem.Quantity,
                     OrderId = orderId
                 };
 
                 await _ordersRepository.AddOrderItemsAsync(orderItem);
-                await _ordersRepository.DeleteCartAsync(cartItem.Id);
+                //TODO очищать корзину и обновлять продукты только в случае успешного добавления 
+                await _ordersRepository.DeleteCartAsync(cartItem.Id.Value);
 
-                var product = new Product()
-                {
-                    Id = cartItem.Id,
-                    BrandId = cartItem.BrandId,
-                    Title = cartItem.Title,
-                    Model = cartItem.Model,
-                    Price = cartItem.Price,
-                    ImageUrls = cartItem.ImageUrls,
-                    Quantity = cartItem.Quantity
-                };
 
-                if (cartItem.Quantity != null)
-                {
-                    cartItem.Quantity -= cartItem.Quantity;
-                }
+                var product = await _productRepository.GetInfoProductAsync(cartItem.ProductId);
+                product.Quantity -= cartItem.Quantity;
 
                 await _productRepository.UpdateProductAsync(product);
             }

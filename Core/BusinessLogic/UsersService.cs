@@ -1,6 +1,7 @@
 ﻿using Core.DB;
 using Core.Interfaces;
-using Core.Models;
+using Core.Models.DTO;
+using Core.Models.Entities;
 using Core.Repositories;
 
 namespace Core.BusinessLogic

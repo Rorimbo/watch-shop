@@ -1,4 +1,4 @@
-﻿namespace Core.Models
+﻿namespace Core.Models.DTO
 {
     public class ProductWithBrand : Product
     {

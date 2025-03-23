@@ -1,7 +1,7 @@
 ﻿using Core.BusinessLogic;
 using Core.DB;
 using Core.Interfaces;
-using Core.Models;
+using Core.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -23,14 +23,14 @@ namespace WebApi.Controllers
 
         [HttpPost]
         [Route("cart")]
-        public async Task AddCartAsync(Cart cart)
+        public async Task AddCartItemAsync(CartItem cartItem)
         {
-            await _ordersService.AddCartAsync(cart);
+            await _ordersService.AddCartItemAsync(cartItem);
         }
 
         [HttpGet]
         [Route("cart/{userId}")]
-        public async Task<List<CartForView>> GetCartAsync(int userId)
+        public async Task<List<CartItem>> GetCartAsync(int userId)
         {
             var cartItems = await _ordersService.GetCartAsync(userId);
             return cartItems;

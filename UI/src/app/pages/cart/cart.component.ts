@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 export class CartComponent {
   cartItems: CartItem[];
   totalAmount: number = 0;
+  showTooltip: boolean = false;
 
   constructor(
     public orderService: OrderService,
@@ -36,6 +37,14 @@ export class CartComponent {
     this.productService.updateCart(cartitem.productId!, 1).subscribe(() => {
       cartitem.quantity += 1;
     });
+  }
+
+  onOrderReady() {
+    this.showTooltip = true;
+    setTimeout(() => {
+      this.showTooltip = false;
+    }, 10000);
+    this.cartItems = [];
   }
 
   delete(item: CartItem) {

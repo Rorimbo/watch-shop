@@ -1,6 +1,8 @@
 ﻿using Core.DB;
 using Core.Interfaces;
 using Core.Models;
+using Core.Models.DTO;
+using Core.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Core.Repositories
@@ -24,22 +26,22 @@ namespace Core.Repositories
             return cartItem;
         }
 
-        public async Task AddCartAsync(Cart cart)
+        public async Task AddCartAsync(Cart  cart)
         {
             await _context.Carts.AddAsync(cart);
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateCartAsync(Cart cart)
+        public async Task UpdateCartAsync(Cart  cart)
         {
             _context.Carts.Update(cart);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<CartForView>> GetCartAsync(int userId)
+        public async Task<List<CartItem >> GetCartAsync(int userId)
         {
             var cartItem = await _context.Carts.Where(c => c.UserId == userId)
-                .Join(_context.Products, c => c.ProductId, p => p.Id, (c, p) => new CartForView()
+                .Join(_context.Products, c => c.ProductId, p => p.Id, (c, p) => new CartItem ()
                 {
                     Id = c.Id,
                     ProductId = c.ProductId,
@@ -50,10 +52,11 @@ namespace Core.Repositories
                     ImageUrls = p.ImageUrls,
                     Quantity = c.Quantity
                 })
-                .Join(_context.Brands, c => c.BrandId, b => b.Id, (c, b) => new CartForView()
+                .Join(_context.Brands, c => c.BrandId, b => b.Id, (c, b) => new CartItem()
                 {
                     Id = c.Id,
                     ProductId = c.ProductId,
+                    BrandId = b.Id,
                     BrandName = b.Name,
                     BrandCountry = b.Country,
                     Title = c.Title,

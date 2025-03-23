@@ -24,7 +24,7 @@ export class OrderService {
   addToCart(cart: Cart): Observable<Cart[]> {
     return this.orderApiService.addToCart(cart).pipe(
       catchError((err) => {
-        this.openSnackBar('Ошибка получения данных');
+        this.openSnackBar('Ошибка добавления в корзину');
         return throwError(err);
       })
     );
@@ -33,7 +33,7 @@ export class OrderService {
   getCart(userId: number): Observable<CartItem[]> {
     return this.orderApiService.getCart(userId).pipe(
       catchError((err) => {
-        this.openSnackBar('Ошибка получения данных');
+        this.openSnackBar('Ошибка загрузки корзины');
         return throwError(err);
       })
     );
@@ -42,7 +42,7 @@ export class OrderService {
   createOrder(orderDetails: OrderDetails): Observable<number> {
     return this.orderApiService.createOrder(orderDetails).pipe(
       catchError((err) => {
-        this.openSnackBar('Ошибка получения данных');
+        this.openSnackBar('Ошибка создания заказа');
         return throwError(err);
       })
     );

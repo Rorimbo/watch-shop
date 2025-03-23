@@ -1,4 +1,4 @@
-﻿namespace Core.Models
+﻿namespace Core.Models.Entities
 {
     /// <summary>
     /// Товар из списка заказа.

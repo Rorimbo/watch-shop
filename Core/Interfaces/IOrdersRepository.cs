@@ -1,4 +1,6 @@
 ﻿using Core.Models;
+using Core.Models.DTO;
+using Core.Models.Entities;
 
 namespace Core.Interfaces
 {
@@ -19,7 +21,7 @@ namespace Core.Interfaces
         /// </summary>
         /// <param name="cart"></param>
         /// <returns></returns>
-        public Task AddCartAsync(Cart cart);
+        public Task AddCartAsync(Cart  cart);
 
         /// <summary>
         /// Обновление товара в корзине.
@@ -33,7 +35,7 @@ namespace Core.Interfaces
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public Task<List<CartForView>> GetCartAsync(int userId);
+        public Task<List<CartItem>> GetCartAsync(int userId);
 
         /// <summary>
         /// Создание заказа.
