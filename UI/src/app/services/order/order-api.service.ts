@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CartItem } from 'src/app/types/cart-item';
 import { Cart } from 'src/app/types/cart';
+import { CartItem } from 'src/app/types/cart-item';
+import { OrderDetails } from 'src/app/types/order-details';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +20,13 @@ export class OrderApiService {
   getCart(userId: number): Observable<CartItem[]> {
     return this.http.get<CartItem[]>(
       `https://localhost:7133/orders/cart/${userId}`
+    );
+  }
+
+  createOrder(orderDetails: OrderDetails): Observable<number> {
+    return this.http.post<number>(
+      `https://localhost:7133/orders/order`,
+      orderDetails
     );
   }
 }

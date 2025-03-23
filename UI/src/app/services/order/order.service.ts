@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { catchError, Observable, throwError } from 'rxjs';
 import { Cart } from 'src/app/types/cart';
 import { CartItem } from 'src/app/types/cart-item';
+import { OrderDetails } from 'src/app/types/order-details';
 
 @Injectable({
   providedIn: 'root',
@@ -31,6 +32,15 @@ export class OrderService {
 
   getCart(userId: number): Observable<CartItem[]> {
     return this.orderApiService.getCart(userId).pipe(
+      catchError((err) => {
+        this.openSnackBar('Ошибка получения данных');
+        return throwError(err);
+      })
+    );
+  }
+
+  createOrder(orderDetails: OrderDetails): Observable<number> {
+    return this.orderApiService.createOrder(orderDetails).pipe(
       catchError((err) => {
         this.openSnackBar('Ошибка получения данных');
         return throwError(err);

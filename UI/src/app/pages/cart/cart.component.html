@@ -34,7 +34,7 @@
     </div>
 
     <div class="btn-text">
-      <p class="text">Товаров на сумму: {{ this.total }} ₽</p>
+      <p class="text">Товаров на сумму: {{ this.totalAmount }} ₽</p>
     </div>
   </div>
 
@@ -43,4 +43,4 @@
   </ng-template>
 </div>
 
-<app-order></app-order>
+<app-order [cart]="cartItems" [totalAmount]="totalAmount"></app-order>

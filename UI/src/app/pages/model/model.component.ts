@@ -20,7 +20,7 @@ export class ModelComponent {
   id: number;
   currentItem?: Item;
   cartItems: CartItem[];
-  total: number = 0;
+  totalAmount: number = 0;
   products: Product[];
 
   selectedImageId?: number | null;

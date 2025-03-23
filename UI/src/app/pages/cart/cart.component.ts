@@ -10,7 +10,7 @@ import { ProductService } from 'src/app/services/product/product.service';
 })
 export class CartComponent {
   cartItems: CartItem[];
-  total: number = 0;
+  totalAmount: number = 0;
 
   constructor(
     public orderService: OrderService,

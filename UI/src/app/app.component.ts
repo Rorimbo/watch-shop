@@ -28,7 +28,7 @@ export class AppComponent {
           this.total += el.totalAmount;
         });
       }
-      component.total = this.total;
+      component.totalAmount = this.total;
     }
   }
 

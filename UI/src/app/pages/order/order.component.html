@@ -1,6 +1,6 @@
 <div class="order">
   <h3 class="title">{{ "оформление заказа" | uppercase }}</h3>
-  <form [formGroup]="orderForm" (ngSubmit)="submitForm()">
+  <form [formGroup]="orderForm" (ngSubmit)="createOrder()">
     <div>
       <h2 class="subtitle">Контактные данные</h2>
       <div class="information">
